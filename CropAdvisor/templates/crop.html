@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Crop Advisor</title>
+    <link rel="stylesheet" href="{% static "css.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 data-key="title"><i class="fas fa-leaf"></i> AI Crop Advisor</h1>
+            <p data-key="subtitle">Your Smart Farming Partner</p>
+        </div>
+        <div class="language-selector-container">
+            <i class="fas fa-globe"></i>
+            <select id="language-selector">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="bn">বাংলা (Bengali)</option>
+                <option value="mr">मराठी (Marathi)</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div id="input-section" class="card">
+            <h2 data-key="form_title"><i class="fas fa-map-marker-alt"></i> Enter Your Farm's Details</h2>
+            <form id="crop-form">
+                <div class="form-group">
+                    <label for="location" data-key="location_label">Location:</label>
+                    <input type="text" id="location" data-key-placeholder="location_placeholder" placeholder="e.g., Kolhapur, Maharashtra" required>
+                </div>
+                <div class="form-group">
+                    <label for="ph" data-key="ph_label">Soil pH:</label>
+                    <input type="number" id="ph" step="0.1" data-key-placeholder="ph_placeholder" placeholder="e.g., 6.5" required>
+                </div>
+                <div class="form-group">
+                    <label for="moisture" data-key="moisture_label">Soil Moisture (%):</label>
+                    <input type="number" id="moisture" data-key-placeholder="moisture_placeholder" placeholder="e.g., 60" required>
+                </div>
+                <div class="form-group">
+                    <label for="nutrients" data-key="nutrients_label">Nitrogen (N) Content (kg/ha):</label>
+                    <input type="number" id="nutrients" data-key-placeholder="nutrients_placeholder" placeholder="e.g., 50" required>
+                </div>
+                <button type="submit" class="btn" data-key="recommend_btn">Get Recommendation <i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        
+        <div id="image-upload-section" class="card">
+            <h2 data-key="image_upload_title"><i class="fas fa-camera"></i> Check Crop Health</h2>
+            <p data-key="image_upload_desc">Upload a picture of a crop leaf to detect diseases.</p>
+            <form id="image-form">
+                <input type="file" id="crop-image-input" accept="image/*" class="hidden">
+                <label for="crop-image-input" class="btn file-upload-btn" data-key="upload_btn"><i class="fas fa-upload"></i> Choose Image</label>
+                
+                <div id="image-preview-container" class="hidden">
+                    <img id="image-preview" src="#" alt="Crop Image Preview" />
+                </div>
+                
+                <button id="analyze-image-btn" type="button" class="btn hidden" data-key="analyze_btn"><i class="fas fa-vials"></i> Analyze Picture</button>
+            </form>
+            <div id="image-analysis-result" class="result-box hidden"></div>
+        </div>
+
+        <div id="result-section" class="card hidden">
+            <h2 data-key="result_title"><i class="fas fa-seedling"></i> Recommended Crops</h2>
+            <div id="loader" class="hidden"></div>
+            <div id="recommendations"></div>
+        </div>
+        
+        <div id="chat-interface" class="card">
+            <h2 data-key="chat_title"><i class="fas fa-comments"></i> Ask a Question</h2>
+            <div id="chat-box">
+                <p class="bot-message" data-key="chat_welcome">Hello! Ask me anything about your farm.</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-question" data-key-placeholder="chat_placeholder" placeholder="Type your question here...">
+                <button id="ask-btn" class="btn"><i class="fas fa-paper-plane"></i></button>
+                <button id="voice-btn" class="btn"><i class="fas fa-microphone"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p data-key="footer_text">&copy; 2025 Smart Farming Solutions</p>
+    </footer>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>
